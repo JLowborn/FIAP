@@ -13,7 +13,7 @@ O arquivo DECRYPTION_KEY.txt contém a chave RSA utilizada para descriptografar 
 ## Como utilizar:
 - Criar um arquivo de nome ENCRYPTME.txt no mesmo diretório em que se encontra o ransomware.
 - Executar o comando `python checkpoint_4_RM87187_Rm87101.py` para criptografar o arquivo.
-- Executar o comadno `python checkpoint_4_RM87187_Rm87101.py --decrypt CHAVE_DE_DESCRIPTOGRAFIA` para resturar o arquivo original.
+- Executar o comadno `python checkpoint_4_RM87187_Rm87101.py --decrypt CHAVE_DE_DESCRIPTOGRAFIA` para resturar o arquivo original (A chave de descriptografia pode ser encontrada no arquivo `DECRYPTION_KEY.txt`).
 
 ## Demo:
 [![Ransomware Demo](http://i3.ytimg.com/vi/4ivYwlEmdN0/hqdefault.jpg)](https://youtu.be/4ivYwlEmdN0 "Ransomware Demo")
