@@ -16,4 +16,4 @@ O arquivo DECRYPTION_KEY.txt contém a chave RSA utilizada para descriptografar 
 - Executar o comadno `python checkpoint_4_RM87187_Rm87101.py --decrypt CHAVE_DE_DESCRIPTOGRAFIA` para resturar o arquivo original.
 
 ## Demo:
-[![Ransomware Demo](https://res.cloudinary.com/marcomontalbano/image/upload/v1629842257/video_to_markdown/images/youtube--N02dVkcRyx8-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://www.youtube.com/watch?v=N02dVkcRyx8 "Ransomware Demo")
+[![Ransomware Demo](http://i3.ytimg.com/vi/4ivYwlEmdN0/hqdefault.jpg)](https://youtu.be/4ivYwlEmdN0 "Ransomware Demo")
