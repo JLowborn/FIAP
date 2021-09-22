@@ -2,5 +2,5 @@
 ###### 21 Mai 2021
 &nbsp;
 
-## Objetivo:
-Organizar os códigos desenvolvidos durante o curso de Defesa Cibernética da FIAP.
+Coletania de códigos desenvolvidos para as atividades (checkpoints) durante o
+curso de Defesa Cibernética na FIAP.
