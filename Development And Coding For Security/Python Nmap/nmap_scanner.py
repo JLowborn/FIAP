@@ -35,9 +35,15 @@ class Nmapper(PortScanner):
 
             self.stdout()
         except KeyboardInterrupt:
-            exit(f'{Fore.RED}[!]{Style.RESET_ALL} User terminated the program')
-        except PortScannerError:
-            exit(f'{Fore.RED}[!]{Style.RESET_ALL} Error while scanning the target')
+            exit(f'{Fore.RED}[!]{Style.RESET_ALL} User terminated the program (ctrl + c)')
+        except PortScannerError as err:
+            if args.debug:
+                exit(f"{Fore.RED}[!]{Style.RESET_ALL} {err}")
+            if 'root' in str(err):
+                exit(f'{Fore.RED}[!]{Style.RESET_ALL} This scan type requires root privileges')
+            else:
+                exit(f'{Fore.RED}[!]{Style.RESET_ALL} Error while scanning the target')
+                
 
 
     ''' TCP Scan '''
@@ -52,7 +58,7 @@ class Nmapper(PortScanner):
 
     ''' Host Discovery Scan '''
     def icmp_scan(self):
-        results: dict = self.nm.scan(self.TARGET, self.PORT, arguments='-sP -PE')
+        results: dict = self.nm.scan(self.TARGET, arguments='-sP -sV')
         return ic(results)
 
     ''' SYN Scan '''
@@ -79,12 +85,12 @@ class Nmapper(PortScanner):
             
         self.data: dict = self.data['nmap']['scanstats']
 
+        print('-'*40)
+        print(f"{self.data['timestr']} - Elapsed time: {self.data['elapsed']}")
+        print(f"Found {self.data['uphosts']} hosts actives of {self.data['totalhosts']} hosts scanned.")
+        print('-'*40)
         for target in self.nm.all_hosts():
-            print('-'*40)
-            print(f"{self.data['timestr']} - Elapsed time: {self.data['elapsed']}")
-            print(f"Found {self.data['uphosts']} hosts actives of {self.data['totalhosts']} hosts scanned.")
-            print('-'*40)
-            print(f"{Fore.GREEN}[+]{Style.RESET_ALL} Host: {target} ({self.nm[target].hostname()})")
+            print(f"{Fore.GREEN}[+]{Style.RESET_ALL} Host: {target} {self.nm[target].hostname()}")
             print(f"{Fore.GREEN}[+]{Style.RESET_ALL} Status: {self.nm[target].state()}\n")
 
             ''' Sort port numbers '''
@@ -96,8 +102,7 @@ class Nmapper(PortScanner):
                 for port in ic(port_list):
                     port_info = self.nm[target][protocol][port]
                     ic(port_info)
-                    print(f"{Fore.GREEN}[+]{Style.RESET_ALL} Port: {port:>5}/{protocol}\t{port_info['state']}\t{port_info['name']}") if not self.VERBOSE else print(f"{Fore.GREEN}[+]{Style.RESET_ALL} Port: {port:>5}/{protocol}\t{port_info['state']}\t{port_info['name']}\t{port_info['product']} {port_info['version']}")
-            print(f"Scanned a total of {self.PORT.split('-')[1]} ports.")
+                    print(f"{Fore.GREEN}[+]{Style.RESET_ALL} Port: {port:>5}/{protocol}\t{port_info['state']}\t{port_info['name']}") if not self.VERBOSE else print(f"{Fore.GREEN}[+]{Style.RESET_ALL} Port: {port:>5}/{protocol}\t{port_info['state']}\t{port_info['name']}\t {port_info['product']} {port_info['version']}")
 
         
     ''' Output results to external JSON file '''
