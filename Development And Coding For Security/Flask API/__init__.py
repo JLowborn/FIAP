@@ -53,7 +53,7 @@ def create_band():
 
     band = Band(raw_data)
     insertion = bands.insert_one(band.json())
-    if insertion: response = json_util.dumps({'message': 'band created successfully'})
+    if insertion: response = json_util.dumps({'message': f'band created successfully with ID: {_id}'})
 
     return Response(response, mimetype='application/json')
 
