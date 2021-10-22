@@ -6,7 +6,14 @@ Custom python portscanner developed using **python-nmap** library. It has a few 
 ## Dependencies:
  - Colorama (for colored output)
  - Icecream (for debugging function)
- - Nmap (for host scanning)
+ - Python-nmap (for host scanning)
+
+## Techniques:
+ - TCP Scan
+ - UDP Scan
+ - ICMP Scan
+ - SYN (Stealth) Scan
+ - Noisy Scan (custom)
 
 ## How to use:
 
@@ -30,3 +37,6 @@ The script also allows the user to scan a network range, for instace, by passing
   `S python nmap_scanner.py -sP 192.168.0.1/24`
   
   ![Host discovery scan results](https://user-images.githubusercontent.com/64245567/138426469-08a8d55b-b3ce-4211-8a47-05f159a010a0.png)
+  
+The **Noisy Scan** is a custom feature which enables all aggressive flags on the scanner, it's called Noisy as it will make "noise" on the network and might draw unwanted attention.
+  
