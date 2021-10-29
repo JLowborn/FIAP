@@ -1,0 +1,4 @@
+colorama
+docker-py
+pymongo
+requests
