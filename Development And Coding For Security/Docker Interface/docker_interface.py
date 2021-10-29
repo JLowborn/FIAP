@@ -26,7 +26,7 @@ import requests
 
 ''' Database information '''
 client = docker.from_env()
-API_ADDRESS = 'http://192.168.1.17:2375'
+API_ADDRESS = ''    # CHANGE TO API ADDRESS
 mongo = pymongo.MongoClient(getenv('MONGO_URI'))
 database = mongo['docker_interface']
 
