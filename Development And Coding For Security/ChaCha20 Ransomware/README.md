@@ -2,7 +2,7 @@
 
 
 
-### IMPORTANT NOTE: This code may cause damage to your system, please be careful.
+### IMPORTANT NOTE: This code may harm your system, proceed with caution.
 
 
 
